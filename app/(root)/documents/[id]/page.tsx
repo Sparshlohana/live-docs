@@ -1,9 +1,10 @@
+import Room from "@/components/Room"
 
 const Page = () => {
     return (
-        <div>
-           
-        </div>
+        <main className="flex w-full flex-col items-center">
+           <Room/>
+        </main>
     )
 }
 
