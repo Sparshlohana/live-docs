@@ -10,7 +10,7 @@ import Image from 'next/image'
 import { updateDocument } from '@/lib/actions/room.actions'
 import Loader from './Loader'
 
-const Room = ({ roomId, roomMetadata }: CollaborativeRoomProps) => {
+const Room = ({ roomId, roomMetadata, currentUserType, users }: CollaborativeRoomProps) => {
     const [editing, setEditing] = useState(false)
     const [loading, setLoading] = useState(false)
     const [documentTitle, setDocumentTitle] = useState(roomMetadata?.title || 'Untitled')
@@ -35,8 +35,6 @@ const Room = ({ roomId, roomMetadata }: CollaborativeRoomProps) => {
             updateDocument(roomId, documentTitle)
         }
     }
-
-    const currentUserType = "editor"
 
     const containerRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -113,7 +111,7 @@ const Room = ({ roomId, roomMetadata }: CollaborativeRoomProps) => {
                             </SignedIn>
                         </div>
                     </Header>
-                    <Editor />
+                    <Editor roomId={roomId} currentUserType={currentUserType} />
                 </div>
             </ClientSideSuspense>
         </RoomProvider>
