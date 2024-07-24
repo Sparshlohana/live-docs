@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Input } from './ui/input'
 import Image from 'next/image'
 import { updateDocument } from '@/lib/actions/room.actions'
+import Loader from './Loader'
 
 const Room = ({ roomId, roomMetadata }: CollaborativeRoomProps) => {
     const [editing, setEditing] = useState(false)
@@ -62,7 +63,7 @@ const Room = ({ roomId, roomMetadata }: CollaborativeRoomProps) => {
 
     return (
         <RoomProvider id={roomId}>
-            <ClientSideSuspense fallback={<div>Loading…</div>}>
+            <ClientSideSuspense fallback={<Loader />}>
                 <div className='collaborative-room'>
                     <Header>
                         <div ref={containerRef} className='flex w-fit items-center justify-center gap-2'>

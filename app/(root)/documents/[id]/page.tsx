@@ -15,15 +15,13 @@ const Page = async ({ params: { id } }: SearchParamProps) => {
         userId: clerkUser.emailAddresses[0].emailAddress,
     });
 
-
-
-    // if (!room) {
-    //     redirect('/');
-    // }
+    if (!room) {
+        redirect('/');
+    }
 
     return (
         <main className="flex w-full flex-col items-center">
-            <Room roomId={id} roomMetadata={room?.metadata} />
+            <Room roomId={id} roomMetadata={room.metadata} />
         </main>
     )
 }
