@@ -25,7 +25,6 @@ const Home = async () => {
       </Header>
 
       {document.length > 0 ? (
-
         <div>
 
         </div>
