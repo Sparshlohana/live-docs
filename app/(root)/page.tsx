@@ -1,5 +1,7 @@
 import CreateDocsBtn from '@/components/CreateDocsBtn';
+import DeleteModel from '@/components/DeleteModel';
 import Header from '@/components/Header';
+import { Notifications } from '@/components/Notifications';
 import { getDocuments } from '@/lib/actions/room.actions';
 import { dateConverter } from '@/lib/utils';
 import { SignedIn, UserButton } from '@clerk/nextjs';
@@ -21,7 +23,7 @@ const Home = async () => {
     <main className='home-container'>
       <Header className='sticky left-0 top-0'>
         <div className='flex items-center gap-2 lg:gap-4'>
-          Notification
+          <Notifications />
           <SignedIn>
             <UserButton />
           </SignedIn>
@@ -32,7 +34,7 @@ const Home = async () => {
         <div className='document-list-container'>
           <div className="document-list-title">
             <h3 className="text-28-semibold">All Documents</h3>
-            <CreateDocsBtn userId={clerkUser?.id} email={clerkUser.emailAddresses[0].emailAddress} />
+            <CreateDocsBtn userId={clerkUser?.id} email={clerkUser.emailAddresses[0].emailAddress}  />
           </div>
           <ul className='document-ul'>
             {roomDocuments.data.map(({ id, metadata, createdAt }: any) => (
@@ -46,6 +48,7 @@ const Home = async () => {
                     <p className='text-sm font-light text-blue-100'>Created about {dateConverter(createdAt)}</p>
                   </div>
                 </Link>
+                <DeleteModel roomId={id} />
               </li>
             ))}
           </ul>
